@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <h2 class="page-header">投稿一覧 <a href="{{ path("app_mypage_blog_add_index") }}" class="btn btn-primary btn-sm">新規投稿</a></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>タイトル</th>
+            <th>投稿者</th>
+            <th>ステータス</th>
+            <th>投稿日</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        {% for post in posts %}
+            <tbody>
+            <tr>
+                <td>{{ post.title }}</td>
+                <td>{{ post.getAuthor().__toString() }}</td>
+                <td>{% if post.status.isPublished() %}公開中{% else %}非公開{% endif %}</td>
+                <td>{{ post.displayDate|date("Y-m-d") }}</td>
+                <td>
+                    {% if post.status.isPublished() == false %}
+                        <a href="{{ path("app_mypage_blog_publish_index",{"id": post.postId}) }}">公開する</a>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+    <div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item{% if page < 2 %} disabled"{% endif %}">
+                <a class="page-link" href="{{ path("app_mypage_default_index",{"page": page - 1}) }}">Previous</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="{{ path("app_mypage_default_index",{"page": page + 1}) }}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+
+{% endblock %}

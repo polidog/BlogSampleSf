@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            ブログ投稿
+        </div>
+        <div class="card-body">
+            <form method="post" class="form">
+                {{ form_widget(form) }}
+                <div class="row">
+                    <button class="btn btn-primary" type="submit">投稿する</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

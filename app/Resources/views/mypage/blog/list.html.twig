@@ -1,0 +1,6 @@
+<table class="table">
+    {% include ':mypage/blog:listhead.html.twig' %}
+{% for post in posts %}
+    {% include ':mypage/blog:listbody.html.twig' %}
+{% endfor %}
+</table>
