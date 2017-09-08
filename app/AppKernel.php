@@ -18,8 +18,10 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
 
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle(),
 
-            new Polidog\BlogDDDBundle\PolidogBlogDDDBundle(),
+            new Polidog\BlogBundle\PolidogBlogBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

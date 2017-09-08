@@ -11,7 +11,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "Polidog\\BlogDDDBundle\\": "src/Polidog/BlogDDDBundle"
+            "Polidog\\BlogBundle\\": "src/Polidog/BlogBundle"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -32,6 +32,7 @@
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
+        "jms/di-extra-bundle": "^1.8",
         "polidog/blog": "dev-master",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^3.0.2",

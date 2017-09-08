@@ -20,7 +20,7 @@ class PublishController extends Controller
      */
     public function indexAction($id)
     {
-        $this->get('polidog_blog_ddd.publish_post')->run($id, $this->getUser()->getId());
+        $this->get('polidog_blog.publish_post')->run($id, $this->getUser()->getId());
         return $this->redirectToRoute('app_mypage_default_index');
     }
 }

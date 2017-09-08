@@ -48,7 +48,7 @@ class AddController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $data = $form->getData();
-            $this->get('polidog_blog_ddd.use_case.add_post')->run($this->getUser()->getId(), $data['displayDate'], $data['title'], $data['content']);
+            $this->get('polidog_blog.use_case.add_post')->run($this->getUser()->getId(), $data['displayDate'], $data['title'], $data['content']);
         } else {
             // TODO エラーアラート
             return $this->redirectToRoute("app_mypage_blog_add_index");

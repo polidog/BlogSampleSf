@@ -1,0 +1,74 @@
+services:
+
+    # encoder
+    polidog_blog.base_password_encoder:
+        class: Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface
+        factory: ["@security.encoder_factory", getEncoder]
+        arguments:
+            - Polidog\BlogBundle\Entity\User
+
+    polidog_blog.password_encoder:
+        class: Polidog\BlogBundle\PasswordEncoder
+        arguments:
+            - "@polidog_blog.base_password_encoder"
+
+    # authenticator
+    polidog_blog.security.authenticator.form_authenticator:
+        class: Polidog\BlogBundle\Security\Authenticator\FormAuthenticator
+        arguments:
+            - "@polidog_blog.authentication"
+
+    # spec
+    polidog_blog.account.spec.register_specification:
+        class: Polidog\Blog\Model\Account\RegisterSpecification
+        arguments:
+            - "@polidog.blog_bundle.repository.user_repository"
+        public: false
+
+    polidog_blog.post.spec.open_post_specification:
+        class: Polidog\Blog\Model\Post\OpenPostSpecification
+        public: false
+
+
+    # App
+    polidog_blog.use_case.add_post:
+        class: Polidog\Blog\Application\UseCase\AddPost
+        arguments:
+            - "@polidog.blog_bundle.repository.post_repository"
+            - "@polidog.blog_bundle.repository.author_repository"
+            - "@polidog.blog_bundle.blog_transaction_manager"
+
+    polidog_blog.use_case.register_user:
+        class: Polidog\Blog\Application\UseCase\RegisterUser
+        arguments:
+            - "@polidog.blog_bundle.repository.user_repository"
+            - "@polidog_blog.account.spec.register_specification"
+            - "@polidog.blog_bundle.blog_transaction_manager"
+            - "@polidog_blog.password_encoder"
+
+    polidog_blog.authentication:
+        class: Polidog\Blog\Application\UseCase\Authentication
+        arguments:
+            - "@polidog.blog_bundle.repository.user_repository"
+            - "@polidog_blog.password_encoder"
+
+    polidog_blog.list_all_posts:
+        class: Polidog\Blog\Application\UseCase\ListAllPosts
+        arguments:
+            - "@polidog.blog_bundle.repository.post_repository"
+
+    polidog_blog.list_posts:
+        class: Polidog\Blog\Application\UseCase\ListPosts
+        arguments:
+            - "@polidog.blog_bundle.repository.post_repository"
+
+    polidog_blog.publish_post:
+        class: Polidog\Blog\Application\UseCase\PublishPost
+        arguments:
+            - "@polidog.blog_bundle.repository.post_repository"
+
+    polidog_blog.show_post:
+        class: Polidog\Blog\Application\UseCase\ShowPost
+        arguments:
+            - "@polidog.blog_bundle.repository.post_repository"
+            - "@polidog_blog.post.spec.open_post_specification"

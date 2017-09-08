@@ -1,7 +1,7 @@
 <tbody>
 <tr>
-    <td>{{ post.title }}</td>
-    <td>{{ post.getAuthor().__toString() }}</td>
-    <td>{{ post.displayDate|date("Y-m-d") }}</td>
+    <td><a href="{{ path("app_default_detail",{"id":post.postId(),"year":post.article.displayDate|date("Y"),"month":post.article.displayDate|date("m")}) }}">{{ post.article.title }}</a></td>
+    <td>{{ post.author.__toString() }}</td>
+    <td>{{ post.article.displayDate|date("Y-m-d") }}</td>
 </tr>
 </tbody>

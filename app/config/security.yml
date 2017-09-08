@@ -6,11 +6,11 @@ security:
     providers:
         user_login:
             entity:
-                class: Polidog\BlogDDDBundle\Entity\User
+                class: Polidog\BlogBundle\Entity\User
                 property: email
 
     encoders:
-        Polidog\BlogDDDBundle\Entity\User:
+        Polidog\BlogBundle\Entity\User:
             algorithm: bcrypt
             cost: 12
 
@@ -28,9 +28,9 @@ security:
             logout:
                 path: /logout
                 target: /
-            guard:
-                authenticators:
-                    - polidog_blog_ddd.security.authenticator.form_authenticator
+#            guard:
+#                authenticators:
+#                    - polidog_blog.security.authenticator.form_authenticator
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate

@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h2 class="page-header text-center">{{ post.article.title }}</h2>
+    <div class="meta text-right">{{ post.article.displayDate|date("Y-m-d") }} | {{ post.author.__toString() }}</div>
+    <div>
+        {{ post.article.content }}
+    </div>
+{% endblock %}

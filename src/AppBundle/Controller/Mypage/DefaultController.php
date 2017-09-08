@@ -5,7 +5,7 @@ namespace AppBundle\Controller\Mypage;
 
 
 use Polidog\Blog\Model\Post\PostStatus;
-use Polidog\BlogDDDBundle\Criteria\PostCriteria;
+use Polidog\BlogBundle\Criteria\PostCriteria;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,7 +33,7 @@ class DefaultController extends Controller
         $offset = ($page - 1) * $limit;
 
         $criteria = new PostCriteria();
-        $posts = $this->get('polidog_blog_ddd.list_posts')->run($offset, $limit, $criteria);
+        $posts = $this->get('polidog_blog.list_posts')->run($offset, $limit, $criteria);
 
         return [
             'posts' => $posts,
